@@ -1,18 +1,18 @@
 package diana.solei.design.viewmodelcodingchallenge
 
+import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 
 class MainActivityViewModel(startingTotal: Int): ViewModel() {
     private var counter: Int = 0
 
+    var totalMutable = MutableLiveData<Int>()
+
     init {
-        counter = startingTotal
+        totalMutable.value = startingTotal
     }
 
-    fun getCounter():Int {
-        return counter
-    }
     fun increaseCounter(input: Int) {
-        counter += input
+        totalMutable.value = (totalMutable.value)?.plus(input)
     }
 }

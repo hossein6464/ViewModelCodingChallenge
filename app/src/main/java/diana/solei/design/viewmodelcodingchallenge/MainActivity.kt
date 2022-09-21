@@ -3,6 +3,7 @@ package diana.solei.design.viewmodelcodingchallenge
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import androidx.databinding.DataBindingUtil
+import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import diana.solei.design.viewmodelcodingchallenge.databinding.ActivityMainBinding
 
@@ -16,10 +17,15 @@ class MainActivity : AppCompatActivity() {
         binding = DataBindingUtil.setContentView(this, R.layout.activity_main)
         viewModelFactory = MainActivityViewModelFactory(124)
         viewModel = ViewModelProvider(this, viewModelFactory)[MainActivityViewModel::class.java]
-        binding.textView.text = viewModel.getCounter().toString()
+
+        // Adding View Model and Live Data
+        viewModel.totalMutable.observe(this, Observer {
+            binding.textView.text = it.toString()
+        })
+
         binding.addButton.setOnClickListener {
             viewModel.increaseCounter(Integer.parseInt(binding.editTextTextPersonName.text.toString()))
-            binding.textView.text = viewModel.getCounter().toString()
+            //binding.textView.text = viewModel.getCounter().toString()
         }
 
     }
