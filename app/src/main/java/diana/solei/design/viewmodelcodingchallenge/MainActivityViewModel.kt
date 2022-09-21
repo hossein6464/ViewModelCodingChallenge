@@ -12,6 +12,9 @@ class MainActivityViewModel(startingTotal: Int): ViewModel() {
     val totalLiveData : LiveData<Int>
     get() = totalMutable
 
+
+    val inputText = MutableLiveData<String>()
+
     init {
         totalMutable.value = startingTotal
     }
@@ -21,6 +24,7 @@ class MainActivityViewModel(startingTotal: Int): ViewModel() {
     }
 
     fun increaseCounterByOne() {
-        totalMutable.value = (totalMutable.value)?.plus(1)
+        val inputText:Int = inputText.value!!.toInt()
+        totalMutable.value = (totalMutable.value)?.plus(inputText)
     }
 }
