@@ -19,4 +19,8 @@ class MainActivityViewModel(startingTotal: Int): ViewModel() {
     fun increaseCounter(input: Int) {
         totalMutable.value = (totalMutable.value)?.plus(input)
     }
+
+    fun increaseCounterByOne() {
+        totalMutable.value = (totalMutable.value)?.plus(1)
+    }
 }

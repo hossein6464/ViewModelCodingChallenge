@@ -17,16 +17,17 @@ class MainActivity : AppCompatActivity() {
         binding = DataBindingUtil.setContentView(this, R.layout.activity_main)
         viewModelFactory = MainActivityViewModelFactory(124)
         viewModel = ViewModelProvider(this, viewModelFactory)[MainActivityViewModel::class.java]
-
+        binding.lifecycleOwner = this
+        binding.myViewModel = viewModel
         // Adding View Model and Live Data
-        viewModel.totalLiveData.observe(this, Observer {
-            binding.textView.text = it.toString()
-        })
+//        viewModel.totalLiveData.observe(this, Observer {
+//            binding.textView.text = it.toString()
+//        })
 
-        binding.addButton.setOnClickListener {
-            viewModel.increaseCounter(Integer.parseInt(binding.editTextTextPersonName.text.toString()))
-            //binding.textView.text = viewModel.getCounter().toString()
-        }
+//        binding.addButton.setOnClickListener {
+//            viewModel.increaseCounter(Integer.parseInt(binding.editTextTextPersonName.text.toString()))
+//            //binding.textView.text = viewModel.getCounter().toString()
+//        }
 
     }
 }
