@@ -19,7 +19,7 @@ class MainActivity : AppCompatActivity() {
         viewModel = ViewModelProvider(this, viewModelFactory)[MainActivityViewModel::class.java]
 
         // Adding View Model and Live Data
-        viewModel.totalMutable.observe(this, Observer {
+        viewModel.totalLiveData.observe(this, Observer {
             binding.textView.text = it.toString()
         })
 
